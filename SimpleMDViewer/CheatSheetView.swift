@@ -14,10 +14,10 @@ struct CheatSheetView: View {
                 }
 
                 section("Emphasis") {
-                    row("**bold**", "bold", style: .bold)
-                    row("*italic*", "italic", style: .italic)
-                    row("***bold italic***", "bold italic", style: .boldItalic)
-                    row("~~strikethrough~~", "strikethrough", style: .strikethrough)
+                    row("**bold**", "bold") { $0.bold() }
+                    row("*italic*", "italic") { $0.italic() }
+                    row("***bold italic***", "bold italic") { $0.bold().italic() }
+                    row("~~strikethrough~~", "strikethrough") { $0.strikethrough() }
                 }
 
                 section("Lists") {
@@ -59,36 +59,15 @@ struct CheatSheetView: View {
         }
     }
 
-    private enum TextStyle {
-        case normal, bold, italic, boldItalic, strikethrough
-    }
-
-    private func row(_ syntax: String, _ description: String, style: TextStyle = .normal) -> some View {
+    private func row(_ syntax: String, _ description: String, style: (Text) -> Text = { $0 }) -> some View {
         HStack(alignment: .top, spacing: 20) {
             Text(syntax)
                 .font(.system(.body, design: .monospaced))
-                .foregroundColor(.primary)
                 .frame(width: 220, alignment: .leading)
 
-            styledText(description, style: style)
+            style(Text(description))
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-        }
-    }
-
-    @ViewBuilder
-    private func styledText(_ text: String, style: TextStyle) -> some View {
-        switch style {
-        case .normal:
-            Text(text)
-        case .bold:
-            Text(text).bold()
-        case .italic:
-            Text(text).italic()
-        case .boldItalic:
-            Text(text).bold().italic()
-        case .strikethrough:
-            Text(text).strikethrough()
         }
     }
 }
