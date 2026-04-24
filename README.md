@@ -20,9 +20,17 @@ Supports the markdown you actually use: headings, bold/italic/strikethrough, lis
 
 ### Download
 
-Grab the latest `SimpleMDViewer.dmg` from the [Releases page](https://github.com/thegeorgeadamson/SimpleMDViewer/releases/latest), open it, and drag the app into Applications.
+1. Grab the latest `SimpleMDViewer.dmg` from the [Releases page](https://github.com/thegeorgeadamson/SimpleMDViewer/releases/latest)
+2. Open it and drag the app into your Applications folder
+3. Clear macOS's quarantine flag so Gatekeeper will let it run:
 
-> **First launch:** the app isn't signed with a paid Apple Developer ID, so macOS will refuse to open it the normal way. **Right-click the app → Open → Open** the first time. After that it launches like anything else.
+   ```sh
+   xattr -dr com.apple.quarantine /Applications/SimpleMDViewer.app
+   ```
+
+4. Open the app normally
+
+> **Why the extra step?** The app isn't signed with a paid Apple Developer ID, so macOS marks downloaded copies as quarantined and shows an "is damaged" error on launch. The `xattr` command above removes that flag — the app itself is fine. This is the same workaround used by other unsigned open-source macOS apps.
 
 ### Build from source
 
