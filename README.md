@@ -18,6 +18,12 @@ Supports the markdown you actually use: headings, bold/italic/strikethrough, lis
 
 ## Install
 
+### Download
+
+Grab the latest `SimpleMDViewer.dmg` from the [Releases page](https://github.com/thegeorgeadamson/SimpleMDViewer/releases/latest), open it, and drag the app into Applications.
+
+> **First launch:** the app isn't signed with a paid Apple Developer ID, so macOS will refuse to open it the normal way. **Right-click the app → Open → Open** the first time. After that it launches like anything else.
+
 ### Build from source
 
 Requires Xcode 15 or later and macOS 14+.
@@ -28,7 +34,7 @@ cd SimpleMDViewer
 open SimpleMDViewer.xcodeproj
 ```
 
-Then press **⌘R** to build and run, or **Product → Archive** to build a distributable `.app`.
+Then press **⌘R** to build and run, or run `scripts/build-dmg.sh` to produce a distributable DMG in `dist/`.
 
 ## Why?
 

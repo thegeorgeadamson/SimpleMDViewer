@@ -1,8 +1,10 @@
 # macOS
 .DS_Store
 
-# Xcode
+# Xcode / build output
 build/
+dist/
+dmg-staging/
 DerivedData/
 *.xcuserstate
 *.xcuserdatad/
